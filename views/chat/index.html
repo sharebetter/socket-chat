@@ -19,7 +19,7 @@
         <script>
             $(function () {
                 const socket = io();
-                const receiveMessage = `<div class="panel panel-primary">
+                const receiveMessage = `<li><div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">Others :</h3>
                                         </div>
@@ -27,8 +27,8 @@
                                                 {content}
                                         </div>
                                         </div>
-                                    </div>`;
-                const sendMessage = `<li><div class="panel panel-primary float-right">
+                                    </div></li>`;
+                const sendMessage = `<li class='float-right'><div class="panel panel-primary">
                                             <div class="panel-heading">
                                                 <h3 class="panel-title2">: Me</h3>
                                             </div>

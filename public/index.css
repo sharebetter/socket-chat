@@ -5,7 +5,8 @@
     form button {width: 9%; color: #fff;background-color: #337ab7;border-color: #2e6da4; border: none; padding: 12px 0; }
     form button:hover { background-color: #286090;border-color: #204d74; }
     #messages { list-style-type: none; margin: 0; padding: 0; overflow: auto;max-height: 80vh}
-    #messages li { text-align: right; margin-right: 30px; }
+    #messages .float-right { text-align: right; margin-right: 30px; }
+    /* #messages .float-left { text-align: left; margin-left: 30px; } */
 
     h1 {
         text-align: center;
@@ -21,8 +22,9 @@
         border-radius: 4px;
         -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
         box-shadow: 0 1px 1px rgba(0,0,0,.05);
-        width:400px;
+        min-width:300px;
         margin:10px 0 20px 30px;
+        display: inline-block;
     }
     .panel-primary>.panel-heading {
         color: #fff;
@@ -46,10 +48,6 @@
     }
     .panel-body {
         padding: 15px;
-    }
-    .float-right {
-        display: inline-block;
-
     }
     .panel-title2 {
         margin-top: 0;
