@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>socket.io</title>
+    <link rel="stylesheet" href="/public/index.css" />
+</head>
+    <body>
+        <h1>websocket chat</h1>
+        <ul id="messages"></ul>
+        <form action="">
+          <input id="msg" autocomplete="off" /><button>Send</button>
+        </form>
+
+        <script src="https://cdn.staticfile.org/socket.io/2.1.1/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+            $(function () {
+                const socket = io();
+                const receiveMessage = `<div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Others :</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                                {content}
+                                        </div>
+                                        </div>
+                                    </div>`;
+                const sendMessage = `<li><div class="panel panel-primary float-right">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title2">: Me</h3>
+                                            </div>
+                                            <div class="panel-body2">
+                                                    {content}
+                                            </div>
+                                            </div>
+                                        </div></li>`;
+                let flag = false;
+                $('form').submit(function(){
+                    // console.log($('#m').val())
+                    flag = true; //发送还是接收flag
+                    socket.emit('chat message', $('#msg').val());
+                    $('#msg').val('');
+                    return false;
+                });
+                socket.on('chat messages', function(socketMsg){
+                    let sendMsg = sendMessage.replace('{content}',socketMsg);
+                    let receiveMsg = receiveMessage.replace('{content}',socketMsg);
+                    let msg = flag?sendMsg:receiveMsg;
+                    $('#messages').append(msg);
+                    flag = false;
+                });
+            });
+        </script>
+    </body>
+</html>
